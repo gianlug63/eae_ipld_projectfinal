@@ -44,11 +44,16 @@ st.write("#")
 
 # TODO: Ex. 1.1: Get the minimum and maximum values for the vertical and horizontal ranges, so the size of the img_arr array -----
 
-min_height = 0 
-max_height = None   # TODO: Replace None with the maximum height of the image using np.shape() function
-
-min_width = 0
-max_width = None    # TODO: Replace None with the maximum width of the image using np.shape() function   
+def get_max_dimensions(img_path):
+    with Image.open(img_path) as img:
+        width, height = img.size
+        return width, height
+img_path = "../data/starry_night.png"
+max_height = get_max_dimensions(img_path)
+max_width = get_max_dimensions(img_path)
+print(f"Height: {max_height} pixels, height is the value on the right")
+print(f"Width: {max_width} pixels,width is the value on the left")
+   # TODO: Replace None with the maximum width of the image using np.shape() function   
 
 
 # ----- Creating the sliders to receive the user input with the dimensions to crop the image ----- 
@@ -70,8 +75,13 @@ else:
 
 # TODO: Ex. 1.3: Crop the image array img_arr using the crop_min_h, crop_max_h, crop_min_w and crop_max_w values -----
 
-crop_arr = None  # TODO: Generate the crop array into a new variable, use NumPy array slicing
-
+crop_min_h = 600
+crop_max_h = 1000
+crop_min_w = 550
+crop_max_w = 1100
+img_array = np.random.random((1089, 1377, 4))
+crop_arr =img_arr[crop_min_h:crop_max_h, crop_min_w:crop_max_w, :]
+print(crop_arr)
 
 # ----- Displaying the cropped image and creating a download button to download the image -----
 
