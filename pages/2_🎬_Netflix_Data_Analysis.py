@@ -106,7 +106,6 @@ def get_top_10_countries(year):
     return top_10_countries
 print(top_10_countries)
 year = int(input("Enter a year: "))
-top_10_countries = get_top_10_countries(year)
 # print(top_10_countries)
 if top_10_countries is not None:
     fig = plt.figure(figsize=(8, 8))
