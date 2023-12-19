@@ -106,6 +106,7 @@ def get_top_10_countries(year):
     top_10_countries = targeted_year['country'].value_counts().head(10)  # TODO: top_10_countries has to be a Pandas Series with the top 10 countries with the number of movies and series combined for that year
     return top_10_countries
 print(top_10_countries)
+top_10_countries = get_top_10_countries(year)
 # print(top_10_countries)
 if top_10_countries is not None:
     fig = plt.figure(figsize=(8, 8))
