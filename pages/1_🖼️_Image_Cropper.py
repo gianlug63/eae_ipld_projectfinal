@@ -13,12 +13,10 @@ st.set_page_config(
     page_icon="📊",
 )
 
-
 # ----- Left menu -----
 with st.sidebar:
     st.image("eae_img.png", width=200)
     st.write("Interactive Project to open, crop, display and save images using NumPy, PIL and Matplotlib.")
-
 
 # ----- Title of the page -----
 st.title("🖼️ Image Cropper")
@@ -31,7 +29,7 @@ img = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
 
 if img is None:
     is_example = True
-    with Image.open("/Users/gianlucaguggiari/Documents/GitHub/eae_ipld_projectfinal/data/starry_night.png") as img:
+    with Image.open("notebook2/starry_night.png") as img:
         img_arr = np.array(img)
 else:
     with Image.open(img) as img:
@@ -41,20 +39,14 @@ else:
 st.image(img_arr, caption="Original Image" if not is_example else "Original example image", use_column_width=True)
 st.write("#")
 
-
 # TODO: Ex. 1.1: Get the minimum and maximum values for the vertical and horizontal ranges, so the size of the img_arr array -----
 
-def get_max_dimensions(img_path):
-    with Image.open(img_path) as img:
-        width, height = img.size
-        return width, height
-img_path = "../data/starry_night.png"
-max_height = get_max_dimensions(img_path)
-max_width = get_max_dimensions(img_path)
-print(f"Height: {max_height} pixels, height is the value on the right")
-print(f"Width: {max_width} pixels,width is the value on the left")
-   # TODO: Replace None with the maximum width of the image using np.shape() function   
 
+min_height = 0 
+max_height = img_arr.shape[0]
+    
+min_width = 0 
+max_width = img_arr.shape[1]
 
 # ----- Creating the sliders to receive the user input with the dimensions to crop the image ----- 
 if type(max_height) == int and type(max_width) == int:
@@ -62,9 +54,9 @@ if type(max_height) == int and type(max_width) == int:
     cols1 = st.columns([4, 1, 4])
 
     # this returns a tuple like (100, 300), for the veritcal range to crop
-    crop_min_h, crop_max_h = cols1[0].slider("Crop Vertical Range", min_height, max_height, (int(max_height*0.1), int(max_height*0.9)))   
+    crop_min_h, crop_max_h = cols1[0].slider("Crop Vertical Range", max_height, max_height, (int(max_height*0.1), int(max_height*0.9)))   
     # this returns a tuple like (100, 300), for the horizontal range to crop
-    crop_min_w, crop_max_w = cols1[2].slider("Crop Horizontal Range", min_width, max_width, (int(max_width*0.1), int(max_width*0.9)))    
+    crop_min_w, crop_max_w = cols1[2].slider("Crop Horizontal Range", max_width, max_width, (int(max_width*0.1), int(max_width*0.9)))    
 
 
     st.write("## Cropped Image")
@@ -75,13 +67,14 @@ else:
 
 # TODO: Ex. 1.3: Crop the image array img_arr using the crop_min_h, crop_max_h, crop_min_w and crop_max_w values -----
 
-crop_min_h = 600
-crop_max_h = 1000
+crop_min_h = 300
+crop_max_h = 600
 crop_min_w = 550
-crop_max_w = 1100
-img_array = np.random.random((1089, 1377, 4))
-crop_arr =img_arr[crop_min_h:crop_max_h, crop_min_w:crop_max_w, :]
-print(crop_arr)
+crop_max_w = 800
+
+img_shape = (1089, 1377, 4)
+
+crop_arr = img_arr[crop_min_h:crop_max_h, crop_min_w:crop_max_w, :]
 
 # ----- Displaying the cropped image and creating a download button to download the image -----
 
