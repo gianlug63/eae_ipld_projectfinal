@@ -68,7 +68,7 @@ for country in split_list:
     if country not in unique_countries_list and country != ("") and ',' not in country:
         unique_countries_list.append(country)
 n_countries = len(unique_countries_list) 
-print(f'Number of unique countries {n_countries}')
+print(f'Number of unique countries: {n_countries}')
 
 # TODO: Ex 2.5: How many characters long are on average the title names?
 movies_df['titles_length']=movies_df['title'].apply(lambda x: len(str(x)))
