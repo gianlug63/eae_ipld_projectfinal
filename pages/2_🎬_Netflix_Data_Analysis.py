@@ -29,7 +29,7 @@ st.divider()
 
 @st.cache_data
 def load_data():
-    data_path = "notebook2/netflix_titles.csv"
+    data_path = "netflix_titles.csv"
 
     movies_df = pd.read_csv(data_path, index_col='show_id')  # TODO: Ex 2.1: Load the dataset using Pandas, use the data_path variable and set the index column to "show_id"
 
@@ -59,7 +59,7 @@ print(f"Number of missing directors: {num_missing_directors}")
 
 # TODO: Ex 2.4: How many different countries are there in the data?
 import pandas as pd
-csv = pd.read_csv("notebook2/netflix_titles.csv", index_col='show_id')
+csv = pd.read_csv("netflix_titles.csv", index_col='show_id')
 csv["country"] = csv["country"].fillna("Unknown")
 unique_countries = (
     csv["country"]
