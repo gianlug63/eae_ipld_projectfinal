@@ -100,7 +100,7 @@ year = cols2[0].number_input("Select a year:", min_year, max_year, 2005)
 
 # TODO: Ex 2.6: For a given year, get the Pandas Series of how many movies and series 
 # combined were made by every country, limit it to the top 10 countries.
-year = [movies_df['release_year']]  # you can try to change the year to see the results for different years 
+year = 2005  # you can try to change the year to see the results for different years 
 targeted_year=movies_df.loc[movies_df['release_year']==year]
 top_10_countries = targeted_year['country'].value_counts().head(10)  # TODO: top_10_countries has to be a Pandas Series with the top 10 countries with the number of movies and series combined for that year
 print(top_10_countries)
