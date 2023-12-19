@@ -4,7 +4,7 @@ import base64
     
 # ----- Page configs (tab title, favicon) -----
 st.set_page_config(
-    page_title="<Your Name> Portfolio",
+    page_title="<Paulo Gianluca Guggiari Poka> Portfolio",
     page_icon="📊",
 )
 
